@@ -2,7 +2,11 @@ import mist
 import wisp
 
 pub type Context {
-  Context(assets_directory: String, configuration: Configuration)
+  Context(
+    assets_directory: String,
+    static_directory: String,
+    configuration: Configuration,
+  )
 }
 
 pub type Configuration {
@@ -23,12 +27,15 @@ pub const blog_configuration = Configuration(
   author: "Kimberly McCarty",
   email: "kimb@kimb.dev",
   copyright: "Kimberly McCarty (CC BY 4.0)",
-  generator: "Made with <a href=\"https://nixos.org\">Nix</a>",
+  generator: "Made with Gleam",
   language: "en-US",
 )
 
-pub fn default_context(assets_directory: String) -> Context {
-  Context(assets_directory, blog_configuration)
+pub fn default_context(
+  assets_directory: String,
+  static_directory: String,
+) -> Context {
+  Context(assets_directory, static_directory, blog_configuration)
 }
 
 pub fn middleware(
@@ -41,6 +48,16 @@ pub fn middleware(
   use <- wisp.rescue_crashes
   use req <- wisp.handle_head(req)
   use <- wisp.serve_static(req, under: "/assets", from: ctx.assets_directory)
+  use <- wisp.serve_static(
+    req,
+    ctx.static_directory <> "/tags/",
+    under: "/static/tags",
+  )
+  use <- wisp.serve_static(
+    req,
+    ctx.static_directory <> "/blog/",
+    under: "/static/blog",
+  )
 
   handle_request(req)
 }
