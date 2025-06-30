@@ -12,17 +12,20 @@ Here's where I blog about stuff that's neat to me.
 
 For work I
 
-* Do Android Development
-  * I really love Accessibility
-  * In a big scary corporate codebase
-* I run the trans erg, too.
+- Do Android Development
+
+  - I really love Accessibility
+
+  - In a big scary corporate codebase
+
+- I run the trans erg, too.
 
 For fun I'm into
 
-* Put stuff in nix
-* Install nixos on my computers
-* Crochet and Knit
-* Bake
-* Work on my weird trucklette
-* Photography
-* 3d printing
+- Put stuff in nix
+- Install nixos on my computers
+- Crochet and Knit
+- Bake
+- Work on my weird trucklette
+- Photography
+- 3d printing
