@@ -1,14 +1,14 @@
 body {
-  font-family: Verdana, sans-serif;
-  margin: auto;
-  padding: 20px;
-  max-width: 720px;
-  text-align: left;
-  background-color: #F0F0D0;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  line-height: 1.5;
-  color: #333333;
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #f0f0d0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #333333;
 }
 
 h1,
@@ -19,492 +19,815 @@ h5,
 h6,
 strong,
 b {
-  color: #305A8F;
+    color: #305a8f;
+}
+
+h1 {
+    font-size: 1.8em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5 {
+    font-size: 1em;
+}
+
+h6 {
+    font-size: 0.9em;
 }
 
 a {
-  color: #2086B0; text-decoration: underline;
+    color: #2086b0;
+    text-decoration: underline;
 }
 
 .title {
-  text-decoration: none;
-  border: 0;
+    text-decoration: none;
+    border: 0;
 }
 .title h1 {
-  font-size: 24px;
-  margin: 19.92px 0 19.92px 0;
+    font-size: 24px;
+    margin: 19.92px 0 19.92px 0;
 }
 
 .title span {
-  font-weight: 400;
+    font-weight: 400;
 }
 
 nav a {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 textarea {
-  background-color: #252525;
-  color: #ddd;
-  width: 100%;
-  font-size: 16px;
+    background-color: #252525;
+    color: #ddd;
+    width: 100%;
+    font-size: 16px;
 }
 
 input {
-  background-color: #252525;
-  color: #ddd;
-  font-size: 16px;
+    background-color: #252525;
+    color: #ddd;
+    font-size: 16px;
 }
 
 .content {
-  display: block;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
+    display: block;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 .content p {
-  margin: 0 0 1em 0;
-  padding: 0;
-  text-indent: 0;
+    margin: 0 0 1em 0;
+    padding: 0;
+    text-indent: 0;
 }
 
 .content > * {
-  margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .content > *:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 table {
-  width: 100%;
+    width: 100%;
 }
 
 table,
 th,
 td {
-  border: 1px solid;
-  border-collapse: collapse;
-  border-color: #c9d1d9;
-  padding: 5px;
+    border: 1px solid;
+    border-collapse: collapse;
+    border-color: #c9d1d9;
+    padding: 5px;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 /* Inline code styling */
 code {
-  padding: 2px 5px;
-  color: #f8f8f2;
-  background-color: #282a36;
-  font-family: monospace;
-  font-size: 0.9em;
-  border-radius: 3px;
+    padding: 2px 5px;
+    color: #f8f8f2;
+    background-color: #282a36;
+    font-family: monospace;
+    font-size: 0.9em;
+    border-radius: 3px;
 }
 
 /* Code blocks - override inline code styling */
 pre {
-  background-color: #282a36;
-  border-radius: 5px;
-  overflow-x: auto;
-  margin: 1em 0;
+    background-color: #282a36;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 1em 0;
 }
 
 pre code {
-  display: block;
-  padding: 20px;
-  white-space: pre;
-  font-size: 14px;
-  tab-size: 4;
-  line-height: 1.4;
-  /* Reset inline code styling for blocks */
-  background-color: transparent;
-  border-radius: 0;
+    display: block;
+    padding: 20px;
+    white-space: pre;
+    font-size: 14px;
+    tab-size: 4;
+    line-height: 1.4;
+    /* Reset inline code styling for blocks */
+    background-color: transparent;
+    border-radius: 0;
 }
 
 blockquote {
-  border-left: 1px solid #999;
-  color: #ccc;
-  padding-left: 20px;
-  font-style: italic;
+    border-left: 1px solid #999;
+    color: #ccc;
+    padding-left: 20px;
+    font-style: italic;
 }
 
 footer {
-  padding: 25px;
-  text-align: center;
+    padding: 25px;
+    text-align: center;
 }
 
 .helptext {
-  color: #aaa;
-  font-size: small;
+    color: #aaa;
+    font-size: small;
 }
 
 .errorlist {
-  color: #eba613;
-  font-size: small;
+    color: #eba613;
+    font-size: small;
 }
 
 /* blog posts */
 ul.blog-posts {
-  list-style-type: none;
-  padding: unset;
+    list-style-type: none;
+    padding: unset;
 }
 
 ul.blog-posts li {
-  display: flex;
-  margin-bottom: 10px;
+    display: flex;
+    margin-bottom: 10px;
 }
 
 ul.blog-posts li span {
-  flex: 0 0 130px;
+    flex: 0 0 130px;
 }
 
 ul.blog-posts li a:visited {
-  color: #8b6fcb;
+    color: #8b6fcb;
 }
 
 a.blog-tags {
-  line-height: 2;
-  margin-right: 12px;
+    line-height: 2;
+    margin-right: 12px;
 }
 
 h3.blog-filter {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .disabled {
-  color: currentColor;
-  cursor: not-allowed;
-  opacity: 0.7;
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 p.byline {
-  font-style: italic;
+    font-style: italic;
 }
 
 /* "Skip to main content" link */
 .skip-link {
-  position: absolute;
-  top: 5;
-  transform: translateY(-600%);
-  transition: transform 0.5s;
-  background-color: #1d1f27;
-  padding: 6px;
+    position: absolute;
+    top: 5;
+    transform: translateY(-600%);
+    transition: transform 0.5s;
+    background-color: #1d1f27;
+    padding: 6px;
 }
 
 .skip-link:focus {
-  transform: translateY(0%);
+    transform: translateY(0%);
 }
 
 figure {
-  margin-inline-start: 0em;
-  margin-inline-end: 0em;
+    margin-inline-start: 0em;
+    margin-inline-end: 0em;
 }
 
 figcaption > p {
-  margin-block-start: 0px;
-  text-align: center;
-  font-style: italic;
-  color: #ccc;
+    margin-block-start: 0px;
+    text-align: center;
+    font-style: italic;
+    color: #ccc;
 }
 
 /* Syntax highlighting styles - Dracula variant */
-/* Background */ .bg { color: #f8f8f2; background-color: #282a36; }
-/* PreWrapper */ .chroma { color: #f8f8f2; background-color: #282a36; }
+/* Background */
+.bg {
+    color: #f8f8f2;
+    background-color: #282a36;
+}
+/* PreWrapper */
+.chroma {
+    color: #f8f8f2;
+    background-color: #282a36;
+}
 /* Other .chroma .x {  } */
 /* Error .chroma .err {  } */
 /* CodeLine .chroma .cl {  } */
-/* LineLink */ .chroma .lnlinks { outline: none; text-decoration: none; color: inherit }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; }
-/* LineHighlight */ .chroma .hl { background-color: #ffffcc }
-/* LineNumbersTable */ .chroma .lnt { white-space: pre; user-select: none; margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #929292 }
-/* LineNumbers */ .chroma .ln { white-space: pre; user-select: none; margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #929292 }
-/* Line */ .chroma .line { display: flex; }
-/* Keyword */ .chroma .k { color: #ff79c6 }
-/* KeywordConstant */ .chroma .kc { color: #ff79c6 }
-/* KeywordDeclaration */ .chroma .kd { color: #8be9fd; font-style: italic }
-/* KeywordNamespace */ .chroma .kn { color: #ff79c6 }
-/* KeywordPseudo */ .chroma .kp { color: #ff79c6 }
-/* KeywordReserved */ .chroma .kr { color: #ff79c6 }
-/* KeywordType */ .chroma .kt { color: #8be9fd }
+/* LineLink */
+.chroma .lnlinks {
+    outline: none;
+    text-decoration: none;
+    color: inherit;
+}
+/* LineTableTD */
+.chroma .lntd {
+    vertical-align: top;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+/* LineTable */
+.chroma .lntable {
+    border-spacing: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+/* LineHighlight */
+.chroma .hl {
+    background-color: #ffffcc;
+}
+/* LineNumbersTable */
+.chroma .lnt {
+    white-space: pre;
+    user-select: none;
+    margin-right: 0.4em;
+    padding: 0 0.4em 0 0.4em;
+    color: #929292;
+}
+/* LineNumbers */
+.chroma .ln {
+    white-space: pre;
+    user-select: none;
+    margin-right: 0.4em;
+    padding: 0 0.4em 0 0.4em;
+    color: #929292;
+}
+/* Line */
+.chroma .line {
+    display: flex;
+}
+/* Keyword */
+.chroma .k {
+    color: #ff79c6;
+}
+/* KeywordConstant */
+.chroma .kc {
+    color: #ff79c6;
+}
+/* KeywordDeclaration */
+.chroma .kd {
+    color: #8be9fd;
+    font-style: italic;
+}
+/* KeywordNamespace */
+.chroma .kn {
+    color: #ff79c6;
+}
+/* KeywordPseudo */
+.chroma .kp {
+    color: #ff79c6;
+}
+/* KeywordReserved */
+.chroma .kr {
+    color: #ff79c6;
+}
+/* KeywordType */
+.chroma .kt {
+    color: #8be9fd;
+}
 /* Name .chroma .n {  } */
-/* NameAttribute */ .chroma .na { color: #50fa7b }
-/* NameBuiltin */ .chroma .nb { color: #8be9fd; font-style: italic }
+/* NameAttribute */
+.chroma .na {
+    color: #50fa7b;
+}
+/* NameBuiltin */
+.chroma .nb {
+    color: #8be9fd;
+    font-style: italic;
+}
 /* NameBuiltinPseudo .chroma .bp {  } */
-/* NameClass */ .chroma .nc { color: #50fa7b }
+/* NameClass */
+.chroma .nc {
+    color: #50fa7b;
+}
 /* NameConstant .chroma .no {  } */
 /* NameDecorator .chroma .nd {  } */
 /* NameEntity .chroma .ni {  } */
 /* NameException .chroma .ne {  } */
-/* NameFunction */ .chroma .nf { color: #50fa7b }
+/* NameFunction */
+.chroma .nf {
+    color: #50fa7b;
+}
 /* NameFunctionMagic .chroma .fm {  } */
-/* NameLabel */ .chroma .nl { color: #8be9fd; font-style: italic }
+/* NameLabel */
+.chroma .nl {
+    color: #8be9fd;
+    font-style: italic;
+}
 /* NameNamespace .chroma .nn {  } */
 /* NameOther .chroma .nx {  } */
 /* NameProperty .chroma .py {  } */
-/* NameTag */ .chroma .nt { color: #ff79c6 }
-/* NameVariable */ .chroma .nv { color: #8be9fd; font-style: italic }
-/* NameVariableClass */ .chroma .vc { color: #8be9fd; font-style: italic }
-/* NameVariableGlobal */ .chroma .vg { color: #8be9fd; font-style: italic }
-/* NameVariableInstance */ .chroma .vi { color: #8be9fd; font-style: italic }
+/* NameTag */
+.chroma .nt {
+    color: #ff79c6;
+}
+/* NameVariable */
+.chroma .nv {
+    color: #8be9fd;
+    font-style: italic;
+}
+/* NameVariableClass */
+.chroma .vc {
+    color: #8be9fd;
+    font-style: italic;
+}
+/* NameVariableGlobal */
+.chroma .vg {
+    color: #8be9fd;
+    font-style: italic;
+}
+/* NameVariableInstance */
+.chroma .vi {
+    color: #8be9fd;
+    font-style: italic;
+}
 /* NameVariableMagic .chroma .vm {  } */
 /* Literal .chroma .l {  } */
 /* LiteralDate .chroma .ld {  } */
-/* LiteralString */ .chroma .s { color: #f1fa8c }
-/* LiteralStringAffix */ .chroma .sa { color: #f1fa8c }
-/* LiteralStringBacktick */ .chroma .sb { color: #f1fa8c }
-/* LiteralStringChar */ .chroma .sc { color: #f1fa8c }
-/* LiteralStringDelimiter */ .chroma .dl { color: #f1fa8c }
-/* LiteralStringDoc */ .chroma .sd { color: #f1fa8c }
-/* LiteralStringDouble */ .chroma .s2 { color: #f1fa8c }
-/* LiteralStringEscape */ .chroma .se { color: #f1fa8c }
-/* LiteralStringHeredoc */ .chroma .sh { color: #f1fa8c }
-/* LiteralStringInterpol */ .chroma .si { color: #f1fa8c }
-/* LiteralStringOther */ .chroma .sx { color: #f1fa8c }
-/* LiteralStringRegex */ .chroma .sr { color: #f1fa8c }
-/* LiteralStringSingle */ .chroma .s1 { color: #f1fa8c }
-/* LiteralStringSymbol */ .chroma .ss { color: #f1fa8c }
-/* LiteralNumber */ .chroma .m { color: #bd93f9 }
-/* LiteralNumberBin */ .chroma .mb { color: #bd93f9 }
-/* LiteralNumberFloat */ .chroma .mf { color: #bd93f9 }
-/* LiteralNumberHex */ .chroma .mh { color: #bd93f9 }
-/* LiteralNumberInteger */ .chroma .mi { color: #bd93f9 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #bd93f9 }
-/* LiteralNumberOct */ .chroma .mo { color: #bd93f9 }
-/* Operator */ .chroma .o { color: #ff79c6 }
-/* OperatorWord */ .chroma .ow { color: #ff79c6 }
+/* LiteralString */
+.chroma .s {
+    color: #f1fa8c;
+}
+/* LiteralStringAffix */
+.chroma .sa {
+    color: #f1fa8c;
+}
+/* LiteralStringBacktick */
+.chroma .sb {
+    color: #f1fa8c;
+}
+/* LiteralStringChar */
+.chroma .sc {
+    color: #f1fa8c;
+}
+/* LiteralStringDelimiter */
+.chroma .dl {
+    color: #f1fa8c;
+}
+/* LiteralStringDoc */
+.chroma .sd {
+    color: #f1fa8c;
+}
+/* LiteralStringDouble */
+.chroma .s2 {
+    color: #f1fa8c;
+}
+/* LiteralStringEscape */
+.chroma .se {
+    color: #f1fa8c;
+}
+/* LiteralStringHeredoc */
+.chroma .sh {
+    color: #f1fa8c;
+}
+/* LiteralStringInterpol */
+.chroma .si {
+    color: #f1fa8c;
+}
+/* LiteralStringOther */
+.chroma .sx {
+    color: #f1fa8c;
+}
+/* LiteralStringRegex */
+.chroma .sr {
+    color: #f1fa8c;
+}
+/* LiteralStringSingle */
+.chroma .s1 {
+    color: #f1fa8c;
+}
+/* LiteralStringSymbol */
+.chroma .ss {
+    color: #f1fa8c;
+}
+/* LiteralNumber */
+.chroma .m {
+    color: #bd93f9;
+}
+/* LiteralNumberBin */
+.chroma .mb {
+    color: #bd93f9;
+}
+/* LiteralNumberFloat */
+.chroma .mf {
+    color: #bd93f9;
+}
+/* LiteralNumberHex */
+.chroma .mh {
+    color: #bd93f9;
+}
+/* LiteralNumberInteger */
+.chroma .mi {
+    color: #bd93f9;
+}
+/* LiteralNumberIntegerLong */
+.chroma .il {
+    color: #bd93f9;
+}
+/* LiteralNumberOct */
+.chroma .mo {
+    color: #bd93f9;
+}
+/* Operator */
+.chroma .o {
+    color: #ff79c6;
+}
+/* OperatorWord */
+.chroma .ow {
+    color: #ff79c6;
+}
 /* Punctuation .chroma .p {  } */
-/* Comment */ .chroma .c { color: #6272a4 }
-/* CommentHashbang */ .chroma .ch { color: #6272a4 }
-/* CommentMultiline */ .chroma .cm { color: #6272a4 }
-/* CommentSingle */ .chroma .c1 { color: #6272a4 }
-/* CommentSpecial */ .chroma .cs { color: #6272a4 }
-/* CommentPreproc */ .chroma .cp { color: #ff79c6 }
-/* CommentPreprocFile */ .chroma .cpf { color: #ff79c6 }
+/* Comment */
+.chroma .c {
+    color: #6272a4;
+}
+/* CommentHashbang */
+.chroma .ch {
+    color: #6272a4;
+}
+/* CommentMultiline */
+.chroma .cm {
+    color: #6272a4;
+}
+/* CommentSingle */
+.chroma .c1 {
+    color: #6272a4;
+}
+/* CommentSpecial */
+.chroma .cs {
+    color: #6272a4;
+}
+/* CommentPreproc */
+.chroma .cp {
+    color: #ff79c6;
+}
+/* CommentPreprocFile */
+.chroma .cpf {
+    color: #ff79c6;
+}
 /* Generic .chroma .g {  } */
-/* GenericDeleted */ .chroma .gd { color: #8b080b }
-/* GenericEmph */ .chroma .ge { text-decoration: underline }
-/* GenericError */ .chroma .gr { color: #8b080b }
-/* GenericHeading */ .chroma .gh { font-weight: bold }
-/* GenericInserted */ .chroma .gi { font-weight: bold }
-/* GenericOutput */ .chroma .go { color: #44475a }
-/* GenericPrompt */ .chroma .gp { }
-/* GenericStrong */ .chroma .gs { }
-/* GenericSubheading */ .chroma .gu { font-weight: bold }
-/* GenericTraceback */ .chroma .gt { }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { }
+/* GenericDeleted */
+.chroma .gd {
+    color: #8b080b;
+}
+/* GenericEmph */
+.chroma .ge {
+    text-decoration: underline;
+}
+/* GenericError */
+.chroma .gr {
+    color: #8b080b;
+}
+/* GenericHeading */
+.chroma .gh {
+    font-weight: bold;
+}
+/* GenericInserted */
+.chroma .gi {
+    font-weight: bold;
+}
+/* GenericOutput */
+.chroma .go {
+    color: #44475a;
+}
+/* GenericPrompt */
+.chroma .gp {
+}
+/* GenericStrong */
+.chroma .gs {
+}
+/* GenericSubheading */
+.chroma .gu {
+    font-weight: bold;
+}
+/* GenericTraceback */
+.chroma .gt {
+}
+/* GenericUnderline */
+.chroma .gl {
+    text-decoration: underline;
+}
+/* TextWhitespace */
+.chroma .w {
+}
 
 /* Sidenotes and Margin Notes */
-.sidenote, .note {
-  display: block;
-  padding: 0.75em;
-  margin: 1em 0;
-  border-left: 3px solid #305A8F;
-  background-color: #E8E8C8;
-  font-size: 0.9em;
-  color: #333333;
-  border-radius: 4px;
+.sidenote,
+.note {
+    display: block;
+    padding: 0.75em;
+    margin: 1em 0;
+    border-left: 3px solid #305a8f;
+    background-color: #e8e8c8;
+    font-size: 0.9em;
+    color: #333333;
+    border-radius: 4px;
 }
 
 /* On larger screens, move sidenotes to the margin */
 @media (min-width: 1200px) {
-  /* Ensure main content area has proper positioning context */
-  main {
-    position: relative;
-  }
-  
-  content {
-    display: block;
-    max-width: 650px;
-    margin: 0 auto;
-  }
-  
-  .sidenote, .note {
-    position: absolute;
-    right: -170px;
-    width: 230px;
-    margin-top: 0;
-    border-left: none;
-    border-radius: 8px;
-    background-color: #E8E8C8;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  
-  /* Prevent overlap - each sidenote checks for previous ones */
-  .sidenote, .note {
-    --sidenote-gap: 1.5em;
-    clear: right;
-  }
-  
-  /* Use float instead of absolute to prevent overlap */
-  .sidenote, .note {
-    position: relative;
-    float: right;
-    clear: right;
-    margin-right: -170px;
-    margin-left: 20px;
-    margin-bottom: 1em;
-  }
+    /* Ensure main content area has proper positioning context */
+    main {
+        position: relative;
+    }
+
+    content {
+        display: block;
+        max-width: 650px;
+        margin: 0 auto;
+    }
+
+    .sidenote,
+    .note {
+        position: absolute;
+        right: -170px;
+        width: 230px;
+        margin-top: 0;
+        border-left: none;
+        border-radius: 8px;
+        background-color: #e8e8c8;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Prevent overlap - each sidenote checks for previous ones */
+    .sidenote,
+    .note {
+        --sidenote-gap: 1.5em;
+        clear: right;
+    }
+
+    /* Use float instead of absolute to prevent overlap */
+    .sidenote,
+    .note {
+        position: relative;
+        float: right;
+        clear: right;
+        margin-right: -170px;
+        margin-left: 20px;
+        margin-bottom: 1em;
+    }
 }
 
 /* Dialogue/Interlocutor Boxes */
 .dialogue {
-  margin: 1.5em 0;
-  padding: 1em 1.2em;
-  border-radius: 8px;
-  border-left: 4px solid #2086B0;
-  background: #E8E8C8;
-  color: #333333;
-  position: relative;
+    margin: 1.5em 0;
+    padding: 1em 1.2em;
+    border-radius: 8px;
+    border-left: 4px solid #2086b0;
+    background: #e8e8c8;
+    color: #333333;
+    position: relative;
 }
 
 /* Character-specific styling */
 .dialogue.questioner {
-  border-left-color: #e91e63;
+    border-left-color: #e91e63;
 }
 
 .dialogue.questioner::before {
-  content: "❓ Questioner: ";
-  font-weight: bold;
-  color: #e91e63;
-  display: block;
-  margin-bottom: 0.5em;
+    content: "❓ Questioner: ";
+    font-weight: bold;
+    color: #e91e63;
+    display: block;
+    margin-bottom: 0.5em;
 }
 
 .dialogue.author {
-  border-left-color: #4A7C59;
+    border-left-color: #4a7c59;
 }
 
 .dialogue.author::before {
-  content: "✍️ Author: ";
-  font-weight: bold;
-  color: #4A7C59;
-  display: block;
-  margin-bottom: 0.5em;
+    content: "✍️ Author: ";
+    font-weight: bold;
+    color: #4a7c59;
+    display: block;
+    margin-bottom: 0.5em;
 }
 
 .dialogue.reader {
-  border-left-color: #bd93f9;
+    border-left-color: #bd93f9;
 }
 
 .dialogue.reader::before {
-  content: "👤 Reader: ";
-  font-weight: bold;
-  color: #bd93f9;
-  display: block;
-  margin-bottom: 0.5em;
+    content: "👤 Reader: ";
+    font-weight: bold;
+    color: #bd93f9;
+    display: block;
+    margin-bottom: 0.5em;
 }
 
 .dialogue.system {
-  border-left-color: #8B7355;
-  background: #D8D8B8;
-  font-family: monospace;
+    border-left-color: #8b7355;
+    background: #d8d8b8;
+    font-family: monospace;
 }
 
 .dialogue.system::before {
-  content: "🖥️ System: ";
-  font-weight: bold;
-  color: #8B7355;
-  display: block;
-  margin-bottom: 0.5em;
+    content: "🖥️ System: ";
+    font-weight: bold;
+    color: #8b7355;
+    display: block;
+    margin-bottom: 0.5em;
 }
 
 /* Custom dialogue without predefined character */
 .dialogue[data-character]::before {
-  content: attr(data-character) ": ";
-  font-weight: bold;
-  color: #305A8F;
-  display: block;
-  margin-bottom: 0.5em;
+    content: attr(data-character) ": ";
+    font-weight: bold;
+    color: #305a8f;
+    display: block;
+    margin-bottom: 0.5em;
 }
 
 /* Ensure dialogue boxes work well with code blocks inside them */
 .dialogue pre {
-  margin: 0.5em 0;
-  background-color: #282a36;
+    margin: 0.5em 0;
+    background-color: #282a36;
 }
 
 .dialogue code {
-  background-color: #282a36;
+    background-color: #282a36;
 }
 
 /* Warning/Info boxes (bonus!) */
 .warning {
-  margin: 1em 0;
-  padding: 1em;
-  border-radius: 8px;
-  border-left: 4px solid #CC4444;
-  background: #F8E8E8;
-  color: #333333;
+    margin: 1em 0;
+    padding: 1em;
+    border-radius: 8px;
+    border-left: 4px solid #cc4444;
+    background: #f8e8e8;
+    color: #333333;
 }
 
 .warning::before {
-  content: "⚠️ Warning: ";
-  font-weight: bold;
-  color: #CC4444;
+    content: "⚠️ Warning: ";
+    font-weight: bold;
+    color: #cc4444;
 }
 
 .info {
-  margin: 1em 0;
-  padding: 1em;
-  border-radius: 8px;
-  border-left: 4px solid #2086B0;
-  background: #E8E8F8;
-  color: #333333;
+    margin: 1em 0;
+    padding: 1em;
+    border-radius: 8px;
+    border-left: 4px solid #2086b0;
+    background: #e8e8f8;
+    color: #333333;
 }
 
 .info::before {
-  content: "ℹ️ Info: ";
-  font-weight: bold;
-  color: #2086B0;
+    content: "ℹ️ Info: ";
+    font-weight: bold;
+    color: #2086b0;
 }
 
 /* Tag styles */
 .tag {
-  display: inline-block;
-  padding: 0.2em 0.6em;
-  margin: 0.2em;
-  background-color: #1175B7;
-  color: white;
-  text-decoration: none;
-  border-radius: 3px;
-  font-size: 0.85em;
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0.2em;
+    background-color: #1175b7;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 0.85em;
 }
 
 .tag:hover {
-  background-color: #0B5080;
-  text-decoration: none;
+    background-color: #0b5080;
+    text-decoration: none;
 }
 
 .tags {
-  margin-left: 1em;
+    margin-left: 1em;
 }
 
 .post-tags {
-  margin: 0.5em 0 1em 0;
-  font-size: 0.9em;
+    margin: 0.5em 0 1em 0;
+    font-size: 0.9em;
 }
 
 .tag-cloud {
-  line-height: 2.5em;
-  text-align: center;
-  margin: 2em 0;
+    line-height: 2.5em;
+    text-align: center;
+    margin: 2em 0;
 }
 
 .tag-size-small {
-  font-size: 0.9em;
+    font-size: 0.9em;
 }
 
 .tag-size-medium {
-  font-size: 1.1em;
+    font-size: 1.1em;
 }
 
 .tag-size-large {
-  font-size: 1.3em;
-  font-weight: bold;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+/* Blog post summary styles */
+.post-list {
+    margin: 2em 0;
+}
+
+.post-summary {
+    margin-bottom: 2.5em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid #d0d0b0;
+}
+
+.post-summary:last-child {
+    border-bottom: none;
+}
+
+.post-date {
+    display: block;
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 0.3em;
+    font-style: italic;
+}
+
+.post-title {
+    margin: 0 0 0.5em 0;
+    font-size: 1.3em;
+    line-height: 1.2;
+}
+
+.post-title a {
+    text-decoration: none;
+    color: #305a8f;
+}
+
+.post-title a:hover {
+    text-decoration: underline;
+}
+
+.post-summary .tags {
+    margin-left: 0;
+    margin-top: 0.8em;
+}
+
+.post-summary .tag {
+    font-size: 0.75em;
+    padding: 0.15em 0.4em;
+}
+
+/* Tag index page styles */
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin: 2em 0;
+    justify-content: flex-start;
+}
+
+.tag-list .tag {
+    font-size: 1em;
+    padding: 0.4em 0.8em;
+    margin: 0.2em;
+}
+
+/* Tag page styles */
+.tag-page-title {
+    color: #305a8f;
+    margin-bottom: 1.5em;
 }

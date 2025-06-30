@@ -1,34 +1,49 @@
+import app/content
 import app/renderer
 import app/web.{type Context}
+import gleam/dict
 import gleam/string_tree
-import simplifile
+
 import wisp.{type Request, type Response}
 
 pub fn handle_request(req: Request, ctx: Context) -> Response {
   use req <- web.middleware(req, ctx)
   case wisp.path_segments(req) {
     [] -> {
-      let assert Ok(markdown) = simplifile.read("./priv/content/_index.md")
+      let markdown = content.get_homepage()
       renderer.render_html(markdown, ctx)
       |> wisp.html_response(200)
     }
     ["blog"] -> {
-      wisp.redirect("/static/blog/index.html")
+      let posts = content.get_published_posts() |> content.sort_posts()
+      renderer.render_blog_index(posts, ctx)
+      |> wisp.html_response(200)
     }
     ["blog", post] -> {
-      let assert Ok(markdown) =
-        simplifile.read("./priv/content/blog/" <> post <> ".md")
-      renderer.render_html(markdown, ctx)
+      case content.get_post_by_slug(post) {
+        Ok(markdown) -> {
+          renderer.render_html(markdown, ctx)
+          |> wisp.html_response(200)
+        }
+        Error(_) -> wisp.not_found()
+      }
+    }
+    ["tags"] -> {
+      let posts = content.get_published_posts()
+      let tags = content.get_all_tags(posts)
+      renderer.render_tags_index(tags, ctx)
       |> wisp.html_response(200)
     }
-    ["tag"] -> {
-      wisp.redirect("/static/tag/index.html")
-    }
-    ["tag", tag] -> {
-      let assert Ok(markdown) =
-        simplifile.read("./priv/content/tag/" <> tag <> ".md")
-      renderer.render_html(markdown, ctx)
-      |> wisp.html_response(200)
+    ["tags", tag] -> {
+      let posts = content.get_published_posts()
+      let posts_by_tag = content.get_posts_by_tag(posts)
+      case dict.get(posts_by_tag, tag) {
+        Ok(tagged_posts) -> {
+          renderer.render_tag_page(tag, tagged_posts, ctx)
+          |> wisp.html_response(200)
+        }
+        Error(_) -> wisp.not_found()
+      }
     }
     _ -> wisp.html_response(string_tree.from_string(req.path), 200)
   }

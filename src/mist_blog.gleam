@@ -1,5 +1,5 @@
 import app/router
-import app/web.{Context}
+import app/web
 import gleam/erlang/process
 import mist
 import wisp
@@ -8,7 +8,7 @@ import wisp/wisp_mist
 pub fn main() {
   wisp.configure_logger()
 
-  let ctx = web.default_context(assets_directory(), static_directory())
+  let ctx = web.default_context(assets_directory())
 
   let handler = router.handle_request(_, ctx)
 
@@ -26,9 +26,4 @@ pub fn main() {
 fn assets_directory() {
   let assert Ok(priv_directory) = wisp.priv_directory("mist_blog")
   priv_directory <> "/assets"
-}
-
-fn static_directory() {
-  let assert Ok(priv_directory) = wisp.priv_directory("mist_blog")
-  priv_directory <> "/static"
 }
