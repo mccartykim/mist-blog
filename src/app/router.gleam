@@ -45,6 +45,13 @@ pub fn handle_request(req: Request, ctx: Context) -> Response {
         Error(_) -> wisp.not_found()
       }
     }
+    ["rss.xml"] -> {
+      let posts = content.get_published_posts() |> content.sort_posts()
+      let rss_content = renderer.render_rss_feed(posts, ctx)
+      wisp.response(200)
+      |> wisp.set_header("content-type", "application/rss+xml")
+      |> wisp.string_body(rss_content)
+    }
     _ -> wisp.html_response(string_tree.from_string(req.path), 200)
   }
 }

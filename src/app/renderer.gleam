@@ -1,6 +1,8 @@
 import app/content.{type Post}
 import app/web.{type Context}
+
 import gleam/list
+import gleam/option.{None, Some}
 import gleam/pair
 import gleam/string
 import gleam/string_tree
@@ -8,6 +10,7 @@ import jot
 import lustre/attribute
 import lustre/element.{type Element}
 import lustre/element/html
+import webls/rss.{RssChannel, RssItem}
 
 pub fn render_html(djot: String, ctx: Context) -> string_tree.StringTree {
   let maybe_frontmatter_and_content: Result(#(String, String), Nil) =
@@ -208,4 +211,59 @@ fn render_page_with_content(
     |> element.to_string
 
   string_tree.from_strings([head, body])
+}
+
+pub fn render_rss_feed(posts: List(Post), ctx: Context) -> String {
+  let base_url = "https://kimb.dev"
+  // TODO: make this configurable
+
+  let rss_items =
+    list.map(posts, fn(post) {
+      RssItem(
+        title: post.title,
+        link: Some(base_url <> post.url),
+        description: extract_excerpt(post.content),
+        pub_date: None,
+        author: Some(ctx.configuration.email),
+        guid: Some(#(base_url <> post.url, Some(True))),
+        categories: [],
+        comments: None,
+        enclosure: None,
+        source: None,
+      )
+    })
+
+  let channel =
+    RssChannel(
+      title: ctx.configuration.title,
+      description: ctx.configuration.description,
+      link: base_url,
+      items: rss_items,
+      categories: [],
+      cloud: None,
+      copyright: Some(ctx.configuration.copyright),
+      docs: None,
+      generator: Some(ctx.configuration.generator),
+      image: None,
+      language: Some(ctx.configuration.language),
+      last_build_date: None,
+      managing_editor: Some(ctx.configuration.email),
+      pub_date: None,
+      skip_days: [],
+      skip_hours: [],
+      text_input: None,
+      ttl: None,
+      web_master: Some(ctx.configuration.email),
+    )
+
+  [channel]
+  |> rss.to_string()
+}
+
+fn extract_excerpt(content: String) -> String {
+  content
+  |> string.split(on: "\n")
+  |> list.take(3)
+  |> string.join(with: " ")
+  |> string.trim()
 }
