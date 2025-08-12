@@ -42,6 +42,7 @@
       in
       {
         packages.default = mist_blog;
+        packages.mist-blog = mist_blog;
         packages.mist_blog_container = pkgs.dockerTools.streamLayeredImage {
           name = "mist-blog";
           contents = [ mist_blog ];
@@ -50,5 +51,7 @@
           };
         };
       }
-    ));
+    )) // {
+        nixosModules.default = import ./module/server.nix;
+    };
 }
