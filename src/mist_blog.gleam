@@ -17,11 +17,13 @@ pub fn main() {
   let secret_key_base = "secret"
 
   let port = get_port()
+  let host = get_host()
 
   let assert Ok(_) =
     wisp_mist.handler(handler, secret_key_base)
     |> mist.new
     |> mist.port(port)
+    |> mist.bind(host)
     |> mist.start
 
   process.sleep_forever()
@@ -36,6 +38,13 @@ fn get_port() -> Int {
       }
     }
     Error(_) -> 8080
+  }
+}
+
+fn get_host() -> String {
+  case envoy.get("HOST") {
+    Ok(host) -> host
+    Error(_) -> "0.0.0.0"  // Default to all interfaces for containers
   }
 }
 
