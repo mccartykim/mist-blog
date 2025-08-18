@@ -3,6 +3,7 @@ import gleam/list
 import gleam/result
 import gleam/string
 import simplifile
+import wisp
 
 // --- Data Structures ---
 
@@ -110,7 +111,8 @@ fn extract_post_from_markdown(
 
 /// Reads all .md files from the blog content directory and parses them into Posts.
 pub fn get_all_posts() -> List(Post) {
-  let blog_dir = "./priv/content/blog/"
+  let assert Ok(priv_dir) = wisp.priv_directory("mist_blog")
+  let blog_dir = priv_dir <> "/content/blog/"
   let assert Ok(files) = simplifile.read_directory(blog_dir)
 
   files
@@ -164,11 +166,13 @@ pub fn get_posts_by_tag(posts: List(Post)) -> Dict(String, List(Post)) {
 
 /// Load the homepage content
 pub fn get_homepage() -> String {
-  let assert Ok(content) = simplifile.read("./priv/content/_index.md")
+  let assert Ok(priv_dir) = wisp.priv_directory("mist_blog")
+  let assert Ok(content) = simplifile.read(priv_dir <> "/content/_index.md")
   content
 }
 
 /// Load a single post by slug
 pub fn get_post_by_slug(slug: String) -> Result(String, simplifile.FileError) {
-  simplifile.read("./priv/content/blog/" <> slug <> ".md")
+  let assert Ok(priv_dir) = wisp.priv_directory("mist_blog")
+  simplifile.read(priv_dir <> "/content/blog/" <> slug <> ".md")
 }
