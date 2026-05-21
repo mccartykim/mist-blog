@@ -44,7 +44,7 @@ fn get_port() -> Int {
 fn get_host() -> String {
   case envoy.get("HOST") {
     Ok(host) -> host
-    Error(_) -> "0.0.0.0"  // Default to all interfaces for containers
+    Error(_) -> "0.0.0.0"
   }
 }
 

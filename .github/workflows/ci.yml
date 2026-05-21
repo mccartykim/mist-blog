@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Nix
+      uses: DeterminateSystems/nix-installer-action@v16
+      with:
+        extra-channel: nixpkgs-unstable
+
+    - name: Check flake
+      run: nix flake check
+
+    - name: Build application
+      run: nix build
+
+    - name: Run tests
+      run: nix develop -c gleam test

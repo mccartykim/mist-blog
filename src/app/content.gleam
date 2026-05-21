@@ -1,3 +1,4 @@
+import envoy
 import gleam/dict.{type Dict}
 import gleam/list
 import gleam/result
@@ -109,10 +110,19 @@ fn extract_post_from_markdown(
 
 // --- Post Loading and Processing ---
 
+fn content_root() -> String {
+  case envoy.get("BLOG_CONTENT_DIR") {
+    Ok(dir) -> dir
+    Error(_) -> {
+      let assert Ok(priv_dir) = wisp.priv_directory("mist_blog")
+      priv_dir <> "/content"
+    }
+  }
+}
+
 /// Reads all .md files from the blog content directory and parses them into Posts.
 pub fn get_all_posts() -> List(Post) {
-  let assert Ok(priv_dir) = wisp.priv_directory("mist_blog")
-  let blog_dir = priv_dir <> "/content/blog/"
+  let blog_dir = content_root() <> "/blog/"
   let assert Ok(files) = simplifile.read_directory(blog_dir)
 
   files
@@ -166,13 +176,11 @@ pub fn get_posts_by_tag(posts: List(Post)) -> Dict(String, List(Post)) {
 
 /// Load the homepage content
 pub fn get_homepage() -> String {
-  let assert Ok(priv_dir) = wisp.priv_directory("mist_blog")
-  let assert Ok(content) = simplifile.read(priv_dir <> "/content/_index.md")
+  let assert Ok(content) = simplifile.read(content_root() <> "/_index.md")
   content
 }
 
 /// Load a single post by slug
 pub fn get_post_by_slug(slug: String) -> Result(String, simplifile.FileError) {
-  let assert Ok(priv_dir) = wisp.priv_directory("mist_blog")
-  simplifile.read(priv_dir <> "/content/blog/" <> slug <> ".md")
+  simplifile.read(content_root() <> "/blog/" <> slug <> ".md")
 }

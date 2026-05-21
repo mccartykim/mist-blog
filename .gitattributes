@@ -1,0 +1,16 @@
+# Normalize line endings for text files
+* text=auto
+*.md text eol=lf
+*.gleam text eol=lf
+*.toml text eol=lf
+*.nix text eol=lf
+
+# Nix files
+*.nix linguist-language=Nix
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary

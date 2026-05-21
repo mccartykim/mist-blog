@@ -2,3 +2,19 @@
 *.ez
 /build
 erl_crash.dump
+
+# Personal content and assets
+priv/content/blog/
+priv/assets/
+
+# Sensitive files
+server.log
+tags_index.png
+
+# Build artifacts and caches
+*.log
+*.tmp
+.cache/
+
+# Nix development
+result*

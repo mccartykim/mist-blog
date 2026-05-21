@@ -214,8 +214,13 @@ fn render_page_with_content(
 }
 
 pub fn render_rss_feed(posts: List(Post), ctx: Context) -> String {
-  let base_url = "https://kimb.dev"
-  // TODO: make this configurable
+  let base_url = ctx.configuration.base_url
+
+  // TODO:
+  // - consider reading base_url from env var (BLOG_BASE_URL) so config changes don't require recompilation
+  // - pub_date on RSS items could use birl for proper RFC 2822 formatting from post.date
+  // - RSS items currently include draft posts; filter with content.get_published_posts if that matters at the call site
+  // - content.extract_excerpt takes the first 3 raw lines; could instead render markdown first, then truncate HTML safely
 
   let rss_items =
     list.map(posts, fn(post) {

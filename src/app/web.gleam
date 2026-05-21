@@ -10,6 +10,7 @@ pub type Configuration {
     description: String,
     author: String,
     email: String,
+    base_url: String,
     copyright: String,
     generator: String,
     language: String,
@@ -17,11 +18,12 @@ pub type Configuration {
 }
 
 pub const blog_configuration = Configuration(
-  title: "kimb.dev",
-  description: "The personal blog of Kimberly McCarty",
-  author: "Kimberly McCarty",
-  email: "kimb@kimb.dev",
-  copyright: "Kimberly McCarty (CC BY 4.0)",
+  title: "My Blog",
+  description: "A blog built with Gleam",
+  author: "Author Name",
+  email: "author@example.com",
+  base_url: "https://example.com",
+  copyright: "Author Name (CC BY 4.0)",
   generator: "Made with Gleam",
   language: "en-US",
 )

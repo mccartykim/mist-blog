@@ -2,7 +2,6 @@ import app/content
 import app/renderer
 import app/web.{type Context}
 import gleam/dict
-import gleam/string_tree
 
 import wisp.{type Request, type Response}
 
@@ -52,6 +51,6 @@ pub fn handle_request(req: Request, ctx: Context) -> Response {
       |> wisp.set_header("content-type", "application/rss+xml")
       |> wisp.string_body(rss_content)
     }
-    _ -> wisp.html_response(string_tree.from_string(req.path), 200)
+    _ -> wisp.not_found()
   }
 }
