@@ -27,7 +27,7 @@ When sharing the repository publicly:
 
 ## Best Practices for Public Sharing
 
-### Option 1: Keep Content Separate (Recommended)
+### Option 1: Keep Content Separate
 1. Keep your personal blog content in a separate repository
 2. Use the public mist-blog repository only for the generator code
 3. When deploying your personal blog, use the public generator
