@@ -70,6 +70,16 @@ in {
       default = "en-US";
       description = "BCP-47 language tag (BLOG_LANGUAGE)";
     };
+
+    wikilinkBase = mkOption {
+      type = types.str;
+      default = "/blog/";
+      description = ''
+        Base path prepended to Obsidian-style wikilink slugs when
+        pre-rendering them to Djot links (BLOG_WIKILINK_BASE). For example,
+        with the default `/blog/`, `[[foo]]` becomes a link to `/blog/foo`.
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
@@ -88,6 +98,7 @@ in {
         BLOG_COPYRIGHT = cfg.copyright;
         BLOG_GENERATOR = cfg.generator;
         BLOG_LANGUAGE = cfg.language;
+        BLOG_WIKILINK_BASE = cfg.wikilinkBase;
       };
       serviceConfig = {
         ExecStart = "${self.packages.${pkgs.system}.default}/bin/mist_blog";

@@ -16,7 +16,7 @@ pub fn hello_world_test() {
 
 const blog_env_vars = [
   "BLOG_TITLE", "BLOG_DESCRIPTION", "BLOG_AUTHOR", "BLOG_EMAIL", "BLOG_BASE_URL",
-  "BLOG_COPYRIGHT", "BLOG_GENERATOR", "BLOG_LANGUAGE",
+  "BLOG_COPYRIGHT", "BLOG_GENERATOR", "BLOG_LANGUAGE", "BLOG_WIKILINK_BASE",
 ]
 
 fn clear_blog_env() -> Nil {
@@ -46,6 +46,7 @@ pub fn config_from_env_defaults_test() {
   assert cfg.copyright == "Author Name (CC BY 4.0)"
   assert cfg.generator == "Made with Gleam"
   assert cfg.language == "en-US"
+  assert cfg.wikilink_base == "/blog/"
 }
 
 pub fn config_from_env_full_override_test() {
@@ -59,6 +60,7 @@ pub fn config_from_env_full_override_test() {
   envoy.set("BLOG_COPYRIGHT", "Custom Author (CC BY-SA 4.0)")
   envoy.set("BLOG_GENERATOR", "Custom Generator")
   envoy.set("BLOG_LANGUAGE", "fr-FR")
+  envoy.set("BLOG_WIKILINK_BASE", "/wiki/")
 
   let cfg = web.config_from_env()
 
@@ -70,6 +72,7 @@ pub fn config_from_env_full_override_test() {
   assert cfg.copyright == "Custom Author (CC BY-SA 4.0)"
   assert cfg.generator == "Custom Generator"
   assert cfg.language == "fr-FR"
+  assert cfg.wikilink_base == "/wiki/"
 
   clear_blog_env()
 }

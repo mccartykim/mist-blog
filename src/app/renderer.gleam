@@ -4,6 +4,7 @@ import app/web.{type Context}
 import gleam/list
 import gleam/option.{None, Some}
 import gleam/pair
+import gleam/regexp
 import gleam/string
 import gleam/string_tree
 import jot
@@ -66,7 +67,10 @@ pub fn render_html(djot: String, ctx: Context) -> string_tree.StringTree {
           "",
           "div",
           [],
-          jot.to_html(pair.second(fm_and_content)),
+          fm_and_content
+            |> pair.second
+            |> preprocess_wikilinks(ctx.configuration.wikilink_base)
+            |> jot.to_html,
         ),
       ]),
       html.footer([], [
@@ -271,4 +275,27 @@ fn extract_excerpt(content: String) -> String {
   |> list.take(3)
   |> string.join(with: " ")
   |> string.trim()
+}
+
+/// Rewrite Obsidian-style wikilinks to standard Djot inline links before
+/// handing the source to `jot.to_html`. Fenced code blocks (```...```) and
+/// inline code spans (`...`) are left untouched.
+///
+///   [[slug]]              -> [slug](BASE + slug)
+///   [[slug|display text]] -> [display text](BASE + slug)
+pub fn preprocess_wikilinks(djot: String, base: String) -> String {
+  let assert Ok(re) =
+    regexp.from_string(
+      "(?s:```.*?```)|`[^`\n]*`|\\[\\[([a-z0-9_\\-]+)(?:\\|([^\\]]+))?\\]\\]",
+    )
+  regexp.match_map(re, djot, fn(m) {
+    // Submatch list length varies by which alternation branch matched:
+    // wikilinks return one or two Some entries; code spans return none.
+    case m.submatches {
+      [Some(slug), Some(alias), ..] ->
+        "[" <> alias <> "](" <> base <> slug <> ")"
+      [Some(slug), ..] -> "[" <> slug <> "](" <> base <> slug <> ")"
+      _ -> m.content
+    }
+  })
 }

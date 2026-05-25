@@ -16,6 +16,7 @@ pub type Configuration {
     copyright: String,
     generator: String,
     language: String,
+    wikilink_base: String,
   )
 }
 
@@ -36,6 +37,7 @@ pub fn config_from_env() -> Configuration {
       |> result.unwrap("Author Name (CC BY 4.0)"),
     generator: envoy.get("BLOG_GENERATOR") |> result.unwrap("Made with Gleam"),
     language: envoy.get("BLOG_LANGUAGE") |> result.unwrap("en-US"),
+    wikilink_base: envoy.get("BLOG_WIKILINK_BASE") |> result.unwrap("/blog/"),
   )
 }
 
