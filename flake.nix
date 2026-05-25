@@ -27,6 +27,19 @@
         mist_blog = buildGleamApplication {
           src = ./.;
         };
+
+        # Re-uses the package build (deps, configure, gleam export) and adds a
+        # checkPhase that runs `gleam test`. Exposed under `checks` so
+        # `nix flake check` fails the flake when any test fails.
+        mist_blog_tests = mist_blog.overrideAttrs (old: {
+          pname = "${old.pname}-tests";
+          doCheck = true;
+          checkPhase = ''
+            runHook preCheck
+            gleam test
+            runHook postCheck
+          '';
+        });
       in
       {
         packages.default = mist_blog;
@@ -38,6 +51,7 @@
             Cmd = [ "/bin/mist_blog" ];
           };
         };
+        checks.tests = mist_blog_tests;
       }
     )) // {
         nixosModules.default = import ./module/server.nix;
