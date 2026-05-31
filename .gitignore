@@ -7,6 +7,10 @@ erl_crash.dump
 priv/content/blog/
 priv/assets/
 
+# Per-developer / per-agent local overrides (CLAUDE.local.md, .envrc.local,
+# etc.) — anything with a .local. segment in its filename stays out of VCS.
+*.local.*
+
 # Sensitive files
 server.log
 tags_index.png
