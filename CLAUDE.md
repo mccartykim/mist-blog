@@ -49,7 +49,7 @@ The application follows a simple web server architecture:
    - `/tags/{tag}` - Posts filtered by tag
    - `/rss.xml` - RSS feed
 3. **Content System** (`src/app/content.gleam`): Parses markdown files with YAML frontmatter from `priv/content/`
-4. **Renderer** (`src/app/renderer.gleam`): Generates HTML using Lustre with embedded CSS styling
+4. **Renderer** (`src/app/renderer.gleam`): Generates HTML using Lustre; CSS is served as an external stylesheet from priv/assets/
 
 ### Key Design Patterns
 
@@ -57,16 +57,12 @@ The application follows a simple web server architecture:
 - **Tag System**: Posts can have multiple tags (comma-separated in frontmatter), with automatic aggregation
 - **Draft Support**: Posts with `draft: true` are excluded from publication
 - **Static Assets**: CSS and other assets served from `priv/assets/`
-- **Configuration**: Blog metadata (title, author, etc.) defined in `src/app/web.gleam`
+- **Configuration**: Blog identity (title, author, etc.) is read from `BLOG_*` env vars in `src/app/web.gleam` (`config_from_env`); deployments inject real values via the `services.mist-blog` NixOS options, not by editing web.gleam
 
 ### Important Implementation Details
 
 - The server uses Wisp as the web framework and Mist as the HTTP server
 - All HTML is server-side rendered using Lustre
 - CSS is embedded directly in the HTML (no external stylesheets)
-- Content parsing uses the jot library for markdown and yaml library for frontmatter
+- Content is Djot rendered via the jot library; frontmatter is parsed by an in-file simplified parser (no external YAML library — there is no yaml dep in gleam.toml)
 - File operations use simplifile for cross-platform compatibility
-
-## Legacy Code
-
-The `priv/` directory contains a standalone Nix-based static site generator from a previous version of the blog. This is no longer connected to the main application and can be ignored.

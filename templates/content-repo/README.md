@@ -44,6 +44,5 @@ content/
   _index.md          # Homepage content
   blog/
     *.md             # One file per post; slug = basename without .md
-_template_blog.md    # Used by `new` for the body shape (frontmatter is fresh)
 flake.nix            # Imports mist-blog, re-exports its apps
 ```

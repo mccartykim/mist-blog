@@ -6,10 +6,11 @@ This document explains how to manage blog content for different environments (de
 
 ```
 priv/content/
-├── blog/           # Blog posts (Markdown with YAML frontmatter)
-├── assets/         # Static assets (images, CSS, etc.)
-└── templates/      # Custom templates (if needed)
+├── blog/           # Blog posts (Djot with frontmatter)
+└── _index.md       # Homepage content
 ```
+
+(Static assets live at `priv/assets/`, not under `priv/content/`.)
 
 ## Environment-Specific Content
 
@@ -50,12 +51,17 @@ Modify the application to load content from:
 1. `priv/content/blog/` (defaults included in repo)
 2. Environment variable path (external personal content)
 
-Example implementation:
+Example implementation (mirrors `content.gleam` lines 113-121):
 ```gleam
 // In content.gleam
-let content_dir = case os.getenv("BLOG_CONTENT_PATH") {
-    Ok(path) -> Path.new(path),
-    Error(_) -> Path.join([app_root, "priv", "content", "blog"])
+fn content_root() -> String {
+  case envoy.get("BLOG_CONTENT_DIR") {
+    Ok(dir) -> dir
+    Error(_) -> {
+      let assert Ok(priv_dir) = wisp.priv_directory("mist_blog")
+      priv_dir <> "/content"
+    }
+  }
 }
 ```
 

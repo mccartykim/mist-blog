@@ -6,8 +6,7 @@ Thanks for your interest in contributing to Mist Blog! This document provides gu
 
 1. Fork the repository
 2. Clone your fork: `git clone <your-fork-url>`
-3. Set up the development environment: `nix develop`
-4. Install dependencies: `gleam deps download`
+3. Install dependencies: `gleam deps download`
 
 ## Running Tests
 

@@ -3,12 +3,12 @@
 [![Package Version](https://img.shields.io/hexpm/v/mist_blog)](https://hex.pm/packages/mist_blog)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/mist_blog)
 
-A Gleam-based static site generator that builds personal blogs using the Mist HTTP server and Wisp web framework. Content is stored as Markdown files with YAML frontmatter.
+A Gleam-based static site generator that builds personal blogs using the Mist HTTP server and Wisp web framework. Content is stored as Djot files (rendered via the jot library) with a simplified YAML-style frontmatter parsed in-file (no external yaml library).
 
 ## Features
 
-- **Static Site Generation**: Convert Markdown files to HTML
-- **YAML Frontmatter**: Metadata support for posts (title, date, tags, draft status)
+- **Static Site Generation**: Convert Djot files to HTML
+- **Frontmatter**: Simplified in-file metadata support for posts (title, date, tags, draft status)
 - **Tag System**: Automatic tag aggregation and filtering
 - **RSS Feed**: Generate XML RSS feed for blog posts
 - **Server-Side Rendering**: Built-in web server using Mist and Wisp
@@ -61,26 +61,26 @@ nix flake check
 
 ## Content Structure
 
-Blog posts are stored in `priv/content/blog/` as Markdown files with YAML frontmatter:
+Blog posts are stored in `priv/content/blog/` as Djot files with a simplified frontmatter:
 
-```markdown
+```djot
 ---
 title: "My First Post"
 date: 2024-01-01
-tags: [greeting, welcome]
+tags: greeting, welcome
 draft: false
 ---
 
 # Post Content
 
-Write your post content here in Markdown.
+Write your post content here in Djot.
 ```
 
 ### Frontmatter Fields
 
 - `title`: Post title (required)
 - `date`: Publication date (YYYY-MM-DD format)
-- `tags`: Array of tags for categorization
+- `tags`: Comma-separated list of tags for categorization (bare words, no brackets — the parser splits on commas and does not strip `[`/`]`)
 - `draft`: Set to `true` to exclude from published site
 
 > **Note**: For production deployments, consider keeping personal content separate from the repository using symlinks or environment variables. See [CONTENT.md](CONTENT.md) for details.
@@ -89,7 +89,7 @@ Write your post content here in Markdown.
 
 - `title`: Post title (required)
 - `date`: Publication date (YYYY-MM-DD format)
-- `tags`: Array of tags for categorization
+- `tags`: Comma-separated list of tags for categorization (bare words, no brackets — the parser splits on commas and does not strip `[`/`]`)
 - `draft`: Set to `true` to exclude from published site
 
 ## Architecture
@@ -121,18 +121,12 @@ src/
 
 3. **Renderer** (`src/app/renderer.gleam`):
    - Generates HTML using Lustre
-   - Embedded CSS styling
+   - External stylesheet served from priv/assets/ (renderer.gleam links /assets/style.css)
    - Responsive layout
 
 ## Configuration
 
-Edit `src/app/web.gleam` to customize:
-
-```gleam
-pub const blog_title = "My Blog"
-pub const blog_author = "Author Name"
-pub const blog_description = "Blog description"
-```
+Blog identity is read from `BLOG_TITLE` / `BLOG_AUTHOR` / `BLOG_DESCRIPTION` (and other `BLOG_*`) environment variables via `config_from_env` in `src/app/web.gleam`. Deployments inject real values through the `services.mist-blog` NixOS options, not by editing `web.gleam` constants.
 
 ## License
 
