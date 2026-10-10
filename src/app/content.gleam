@@ -180,7 +180,10 @@ pub fn get_homepage() -> String {
   content
 }
 
-/// Load a single post by slug
-pub fn get_post_by_slug(slug: String) -> Result(String, simplifile.FileError) {
-  simplifile.read(content_root() <> "/blog/" <> slug <> ".md")
+/// Load a single published post by slug. Draft posts are excluded so they
+/// are not reachable at their direct URLs (the router turns Error into a 404).
+pub fn get_post_by_slug(slug: String) -> Result(String, Nil) {
+  get_all_posts()
+  |> list.find(fn(post) { post.url == "/blog/" <> slug && !post.draft })
+  |> result.map(fn(post) { post.raw_content })
 }
