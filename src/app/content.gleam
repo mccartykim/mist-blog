@@ -120,6 +120,15 @@ fn content_root() -> String {
   }
 }
 
+/// Draft mode (BLOG_DRAFT_MODE=true) serves draft posts: a local-preview
+/// convenience. Unset, false, or any other value keeps drafts dark.
+fn is_draft_mode() -> Bool {
+  case envoy.get("BLOG_DRAFT_MODE") {
+    Ok("true") -> True
+    _ -> False
+  }
+}
+
 /// Reads all .md files from the blog content directory and parses them into Posts.
 pub fn get_all_posts() -> List(Post) {
   let blog_dir = content_root() <> "/blog/"
@@ -136,10 +145,11 @@ pub fn get_all_posts() -> List(Post) {
   |> result.unwrap([])
 }
 
-/// Returns all posts that are not marked as draft.
+/// Returns published posts; draft posts are included only when draft mode is
+/// on (BLOG_DRAFT_MODE=true).
 pub fn get_published_posts() -> List(Post) {
   get_all_posts()
-  |> list.filter(fn(post) { !post.draft })
+  |> list.filter(fn(post) { !post.draft || is_draft_mode() })
 }
 
 /// Sorts posts with the newest first.
@@ -180,10 +190,14 @@ pub fn get_homepage() -> String {
   content
 }
 
-/// Load a single published post by slug. Draft posts are excluded so they
-/// are not reachable at their direct URLs (the router turns Error into a 404).
+/// Load a single published post by slug. Draft posts 404 unless draft mode
+/// is on (BLOG_DRAFT_MODE=true, a local-preview convenience); the router
+/// renders Error as a 404.
 pub fn get_post_by_slug(slug: String) -> Result(String, Nil) {
   get_all_posts()
-  |> list.find(fn(post) { post.url == "/blog/" <> slug && !post.draft })
+  |> list.find(fn(post) {
+    let visible = !post.draft || is_draft_mode()
+    post.url == "/blog/" <> slug && visible
+  })
   |> result.map(fn(post) { post.raw_content })
 }

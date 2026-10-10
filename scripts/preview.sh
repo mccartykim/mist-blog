@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # preview — spin up the mist_blog engine locally pointed at this content dir.
-# Usage: preview <slug> [--port <int>] [--content-dir <path>]
+# Usage: preview <slug> [--drafts] [--port <int>] [--content-dir <path>]
 # Does not auto-open a browser; just prints the URL and waits for Ctrl-C.
 set -euo pipefail
 
@@ -9,6 +9,7 @@ port="${PORT:-8765}"
 host="${HOST:-127.0.0.1}"
 content_dir="${BLOG_CONTENT_DIR:-./content}"
 title=""
+draft_mode="${BLOG_DRAFT_MODE:-}"
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -16,14 +17,16 @@ while [[ $# -gt 0 ]]; do
         --content-dir) content_dir="$2"; shift 2 ;;
         --host)        host="$2"; shift 2 ;;
         --title)       title="$2"; shift 2 ;;
+        --drafts)      draft_mode="1"; shift ;;
         --)            shift ;;
         -h|--help)
             cat <<'USAGE'
-usage: preview <slug> [--port <int>] [--host <addr>] [--content-dir <path>]
+usage: preview <slug> [--drafts] [--port <int>] [--host <addr>] [--content-dir <path>]
                       [--title <string>]
   Starts mist_blog with BLOG_CONTENT_DIR pointed at <content-dir> and
   prints the URL for the post. Ctrl-C cleans up the child server.
-  --title overrides BLOG_TITLE for this preview only. All other BLOG_*
+  --drafts sets BLOG_DRAFT_MODE=true so draft posts render in this preview
+  only. --title overrides BLOG_TITLE for this preview only. All other BLOG_*
   identity vars (AUTHOR, DESCRIPTION, COPYRIGHT, etc.) are inherited
   from the parent shell — set them in your .envrc if direnv-using, or
   export them in your shell rc.
@@ -47,6 +50,11 @@ export BLOG_CONTENT_DIR="$content_dir_abs"
 export PORT="$port"
 export HOST="$host"
 [[ -n "$title" ]] && export BLOG_TITLE="$title"
+if [[ -n "$draft_mode" ]]; then
+    export BLOG_DRAFT_MODE="true"
+else
+    unset BLOG_DRAFT_MODE
+fi
 
 mist_blog &
 pid=$!

@@ -11,6 +11,15 @@ in {
       description = "Path to blog content directory (must contain _index.md and blog/)";
     };
 
+    draftMode = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Serve draft posts (BLOG_DRAFT_MODE=true). Default false: drafts 404.
+        Intended for local preview only — do not enable on public hosts.
+      '';
+    };
+
     port = mkOption {
       type = types.int;
       default = 8080;
@@ -88,6 +97,10 @@ in {
       after = [ "network.target" ];
       environment = {
         BLOG_CONTENT_DIR = cfg.contentDir;
+        BLOG_DRAFT_MODE =
+          if cfg.draftMode
+          then "true"
+          else "false";
         PORT = toString cfg.port;
         HOST = cfg.host;
         BLOG_TITLE = cfg.title;

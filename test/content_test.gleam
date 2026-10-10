@@ -1,5 +1,6 @@
 import app/content
 import envoy
+import gleam/list
 import gleam/string
 
 // The engine's own priv/content/blog is gitignored personal content, so these
@@ -7,6 +8,7 @@ import gleam/string
 // and one draft — mirroring how the NixOS module injects the content dir.
 
 pub fn get_post_by_slug_draft_handling_test() {
+  envoy.unset("BLOG_DRAFT_MODE")
   envoy.set("BLOG_CONTENT_DIR", "test/fixtures/content")
 
   // A published post is still served, content intact (raw markdown with
@@ -19,6 +21,29 @@ pub fn get_post_by_slug_draft_handling_test() {
 
   // An unknown slug still errors (router renders 404), as before.
   let assert Error(Nil) = content.get_post_by_slug("no-such-slug")
+
+  envoy.unset("BLOG_CONTENT_DIR")
+}
+
+pub fn draft_mode_test() {
+  envoy.set("BLOG_CONTENT_DIR", "test/fixtures/content")
+
+  // Draft mode on: drafts render at their URL and appear on the index.
+  envoy.set("BLOG_DRAFT_MODE", "true")
+  let assert Ok(post) = content.get_post_by_slug("draft-post")
+  assert string.contains(post, "Draft body.")
+  let assert [_] =
+    list.filter(content.get_published_posts(), fn(p) {
+      p.url == "/blog/draft-post"
+    })
+
+  // Draft mode off: drafts dark everywhere again.
+  envoy.unset("BLOG_DRAFT_MODE")
+  let assert Error(Nil) = content.get_post_by_slug("draft-post")
+  let assert [] =
+    list.filter(content.get_published_posts(), fn(p) {
+      p.url == "/blog/draft-post"
+    })
 
   envoy.unset("BLOG_CONTENT_DIR")
 }
